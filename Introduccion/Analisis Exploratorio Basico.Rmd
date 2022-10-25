@@ -1,0 +1,76 @@
+---
+title: "Analisis Exploratorio Basico"
+author: Jesedh Guerrero Paisano
+output: html_notebook
+---
+### Comentarios iniciales
+```{r}
+### Introduccion a R(lenguaje de programacíon) y a R Studio
+## By: Jesedh Guerrero Paisano ##
+
+"Primero debemos de instalar r project, despues R Studio
+Este mini curso lo saque de la siguiente url: https://www.youtube.com/watch?v=GI8lmLArDLU
+
+Este es mi primer Script"
+```
+## **Analisis exploratorio muy basico**
+#### Cargamos librerias e importamos el archivo o la base de datos (Datos del gobierno sobre empleados)
+```{r}
+# Activamos paquetes
+library(ggplot2)
+library(tidyr)
+library(readxl)
+
+# IMPORTAR EL ARCHIVO QUE CONTIENE LOS DATOS A ANALIZAR EN MODO LECTURA
+enow<-read_xlsx("mu_enoe.xlsx")
+```
+#### Graficamos los datos tomando solo 2 variables
+```{r}
+# Grafica de puntos con los años de escolaridad en el eje X y el ingreso mensual en el eje Y
+ggplot(data = enow)+
+  geom_point(mapping = aes(x=anios_esc, y = ingreso_mensual))
+```
+#### La misma grafica pero con distincion de color
+```{r}
+# Grafica igual a la anterior pero con las distincion si el empleo es formal o informal
+ggplot(data = enow)+
+  geom_point(mapping = aes(x=anios_esc, y = ingreso_mensual, color = tipo_empleo))
+```
+
+### Ahora manipularemos los datos de la tabla
+La bilioteca (tidyverse) Incluye los siguientes paquetes:
+
+* ggplot
+* tibble
+* tidyr
+* readr
+* purrr
+* dplyr
+* stringr
+* forcats
+```{r}
+library(tidyverse)
+enoe<-read_xlsx("C:/Users/Jesedh/OneDrive/5AM1/Analítica y visualización de datos/R/mu_enoe.xlsx")
+# Para visualizar la variable donde ingresamos la base de datos en formato de tabla
+View(enoe)
+# Para filtrar datos utilizamos "filter"
+Empleadohombre <- filter(enoe, edad==50)
+View(Empleadohombre)
+```
+#### Ordenaremos los datos
+```{r}
+# Para ordenar datos utilizamos "arrange"
+Empleadohombre<-arrange(enoe, edad)
+View(Empleadohombre)
+
+enoe<-mutate(enoe, edadsinlosaniosdeestudio=edad-anios_esc)
+View(enoe)
+```
+### Promedios y mediana
+```{r}
+dato<-summarise(enoe, mean(edad), median(edad))
+class(dato)
+dato
+```
+
+

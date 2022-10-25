@@ -1,0 +1,39 @@
+---
+title: "Mi primer R Markdown con R Notebook"
+author: 'Jesedh Guerrero: Introducción a Markdown en R'
+date: "2022-10-16"
+output:
+  html_notebook:
+    theme: journal
+---
+
+### ¿Que es R Markdown?
+
+* R *Markdown* sirve para mostrar en un documento donde textualmente se explique como es que realizaste
+el procedimiento para poder llegar a las conclusiones plazmadas por el codigo.
+
+* De esta manera el codigo va acompañado de un tipo de comenatarios, aunque con la diferencia de que es
+visulamentente mas agradable.
+
+### Diferencia con R Notebook
+
+¿Que es R Notebook?
+
+**Modo de ejecución interactivo para documentos R Markdown.**
+
+Un R Notebook es un documento R Markdown que permite la ejecución independiente e interactiva de los fragmentos de código. Esto le permite evaluar visualmente el resultado a medida que desarrolla su documento R Markdown sin tener que recorrer todo el documento para ver el resultado.
+
+**Usaremos solo R notebooks durante el aprendizaje de R**
+
+Porque expone funcionalidades mas completas y la eleccion de ejecucion independiente de los fragmentos de codigo sin tener que cortar(Knif) el documento para poder visualizar la ejecucion de los codigos
+
+[Libro en ingles del uso de R Markdown](https://bookdown.org/yihui/rmarkdown/. "Markdown Curso")
+
+## Este es mi primer codigo insertado en R Markdown
+
+```{r}
+library(tidyverse)
+my_data <- as_tibble(iris)
+my_data %>% select(1:5) %>% filter(Species == "setosa")
+```
+
